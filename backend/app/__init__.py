@@ -11,9 +11,12 @@ def create_app(config_class=Config):
     
     # Initialize extensions
     db.init_app(app)
+
+    with app.app_context():
+        db.create_all()
     
-    # Simple CORS configuration
-    CORS(app, origins=["https://chyrp-aniket.up.railway.app"], supports_credentials=True)
+    # Configure CORS
+    CORS(app, supports_credentials=True)
     
     # Import and register blueprints
     from app.routes import main
