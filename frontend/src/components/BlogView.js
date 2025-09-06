@@ -21,7 +21,7 @@ const BlogView = () => {
   const fetchBlog = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:5000/blog/${id}`, {
+      const res = await axios.get(`https://chyrp_modern.railway.internal:5000/blog/${id}`, {
         withCredentials: true
       });
       
@@ -46,7 +46,7 @@ const BlogView = () => {
 
   const fetchComments = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/blog/${id}/comments`, {
+      const res = await axios.get(`https://chyrp_modern.railway.internal:5000/blog/${id}/comments`, {
         withCredentials: true
       });
       setComments(res.data.comments || []);
@@ -57,7 +57,7 @@ const BlogView = () => {
 
   const handleLike = async () => {
     try {
-      const res = await axios.post(`http://localhost:5000/blog/${id}/like`, {}, {
+      const res = await axios.post(`https://chyrp_modern.railway.internal:5000/blog/${id}/like`, {}, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ const BlogView = () => {
 
     setCommentLoading(true);
     try {
-      const res = await axios.post(`http://localhost:5000/blog/${id}/comment`, {
+      const res = await axios.post(`https://chyrp_modern.railway.internal:5000/blog/${id}/comment`, {
         content: newComment
       }, {
         withCredentials: true,
