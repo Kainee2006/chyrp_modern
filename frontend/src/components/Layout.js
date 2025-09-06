@@ -8,7 +8,7 @@ const Layout = ({ children, isAuthenticated = false, username = '' }) => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:5000/logout', {}, {
+      await axios.post('https://chyrp-aniket.up.railway.app:5000/logout', {}, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json'
