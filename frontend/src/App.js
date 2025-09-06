@@ -23,7 +23,7 @@ function App() {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch('https://chyrp_modern.railway.internal/check_auth', {
+      const response = await fetch('chyrp_modern.railway.internal/check_auth', {
         credentials: 'include'
       });
       
