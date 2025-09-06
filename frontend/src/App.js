@@ -22,22 +22,29 @@ function App() {
   }, []);
 
   const checkAuthStatus = async () => {
-    try {
-      const response = await fetch('https://chyrpmodern-production.up.railway.app/check_auth', {
-        credentials: 'include'
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        setIsAuthenticated(data.authenticated);
-        setUsername(data.username || '');
-      }
-    } catch (error) {
-      console.error('Auth check error:', error);
-    } finally {
-      setLoading(false);
+  try {
+    const response = await fetch('https://chyrpmodern-production.up.railway.app/check_auth', {
+      credentials: 'include',
+      mode: 'cors' // Explicitly set mode
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      setIsAuthenticated(data.authenticated);
+      setUsername(data.username || '');
+    } else {
+      console.log('Auth check failed with status:', response.status);
     }
-  };
+  } catch (error) {
+    console.error('Auth check error:', error);
+    // Check if it's a CORS error specifically
+    if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+      console.log('This is likely a CORS issue');
+    }
+  } finally {
+    setLoading(false);
+  }
+};
 
   if (loading) {
     return <div>Loading...</div>;
