@@ -23,7 +23,7 @@ function App() {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch('http://localhost:5000/check_auth', {
+      const response = await fetch('chyrp_modern.railway.internal:5000/check_auth', {
         credentials: 'include'
       });
       
