@@ -34,7 +34,7 @@ const Feed = () => {
       setLoading(true);
       setError('');
       
-      const res = await axios.get('https://chyrp-aniket.up.railway.app:5000/feed', {
+      const res = await axios.get('https://chyrp-aniket.up.railway.app/feed', {
         withCredentials: true
       });
       
@@ -68,7 +68,7 @@ const Feed = () => {
 
   const handleLike = async (blogId) => {
     try {
-      const res = await axios.post(`https://chyrp-aniket.up.railway.app:5000/blog/${blogId}/like`, {}, {
+      const res = await axios.post(`https://chyrp-aniket.up.railway.app/blog/${blogId}/like`, {}, {
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json'
