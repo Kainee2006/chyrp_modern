@@ -21,7 +21,7 @@ const Login = ({ onLogin }) => {
     setLoading(true);
     
     try {
-      const res = await axios.post('http://localhost:5000/login', {
+      const res = await axios.post('https://chyrp-aniket.up.railway.app/login', {
         username,
         password
       }, { withCredentials: true });
