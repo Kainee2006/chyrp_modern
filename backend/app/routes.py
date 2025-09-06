@@ -28,6 +28,27 @@ cloudinary.config(
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp', 'mp4', 'mov', 'avi', 'wmv', 'webm'}
 
+
+# routes.py - Add these OPTIONS handlers
+
+@main.route('/register', methods=['OPTIONS'])
+@main.route('/login', methods=['OPTIONS'])
+@main.route('/check_auth', methods=['OPTIONS'])
+@main.route('/dashboard', methods=['OPTIONS'])
+@main.route('/create_blog', methods=['OPTIONS'])
+@main.route('/blog/<int:blog_id>', methods=['OPTIONS'])
+@main.route('/feed', methods=['OPTIONS'])
+@main.route('/simple_feed', methods=['OPTIONS'])
+@main.route('/minimal_feed', methods=['OPTIONS'])
+@main.route('/blog/<int:blog_id>/like', methods=['OPTIONS'])
+@main.route('/blog/<int:blog_id>/comments', methods=['OPTIONS'])
+@main.route('/blog/<int:blog_id>/comment', methods=['OPTIONS'])
+@cross_origin(supports_credentials=True)
+def options_handler(*args, **kwargs):
+    return jsonify({}), 200
+
+
+
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
