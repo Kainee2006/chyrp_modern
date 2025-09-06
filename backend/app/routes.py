@@ -35,46 +35,12 @@ def test_cors():
     return jsonify({"message": "CORS is working!", "origin": request.headers.get('Origin')}), 200
 
 
-@main.route('/register', methods=['OPTIONS'])
-@main.route('/login', methods=['OPTIONS'])
-@main.route('/check_auth', methods=['OPTIONS'])
-@main.route('/dashboard', methods=['OPTIONS'])
-@main.route('/create_blog', methods=['OPTIONS'])
-@main.route('/blog/<int:blog_id>', methods=['OPTIONS'])
-@main.route('/feed', methods=['OPTIONS'])
-@main.route('/simple_feed', methods=['OPTIONS'])
-@main.route('/minimal_feed', methods=['OPTIONS'])
-@main.route('/blog/<int:blog_id>/like', methods=['OPTIONS'])
-@main.route('/blog/<int:blog_id>/comments', methods=['OPTIONS'])
-@main.route('/blog/<int:blog_id>/comment', methods=['OPTIONS'])
-@cross_origin(supports_credentials=True)
-def options_handler(*args, **kwargs):
-    return jsonify({}), 200
-
-
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@main.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', 'https://chyrp-aniket.up.railway.app')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    response.headers.add('Access-Control-Allow-Credentials', 'true')
-    return response
-
-@main.before_request
-def handle_options():
-    if request.method == 'OPTIONS':
-        response = jsonify()
-        response.headers.add('Access-Control-Allow-Origin', 'https://chyrp-aniket.up.railway.app')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-        response.headers.add('Access-Control-Allow-Credentials', 'true')
-        return response, 200
 
 
 @main.route('/uploads/<path:filename>')
