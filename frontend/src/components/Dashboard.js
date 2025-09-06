@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   const checkAuth = async () => {
     try {
-      const res = await axios.get('https://chyrp_modern.railway.internal:5000/check_auth', {
+      const res = await axios.get('https://chyrp_modern.railway.internal/check_auth', {
         withCredentials: true
       });
       
@@ -54,7 +54,7 @@ const Dashboard = () => {
     try {
       setLoading(true);
       
-      const res = await axios.get('https://chyrp_modern.railway.internal:5000/dashboard', {
+      const res = await axios.get('https://chyrp_modern.railway.internal/dashboard', {
         withCredentials: true
       });
       
@@ -102,7 +102,7 @@ const Dashboard = () => {
 
     setDeleting(blogId);
     try {
-      await axios.delete(`https://chyrp_modern.railway.internal:5000/blog/${blogId}`, {
+      await axios.delete(`https://chyrp_modern.railway.internal/blog/${blogId}`, {
         withCredentials: true
       });
       
