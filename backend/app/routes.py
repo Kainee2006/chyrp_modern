@@ -58,9 +58,17 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+@main.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', 'https://chyrp-aniket.up.railway.app')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    response.headers.add('Access-Control-Allow-Credentials', 'true')
+    return response
+
 @main.before_request
-def handle_preflight():
-    if request.method == "OPTIONS":
+def handle_options():
+    if request.method == 'OPTIONS':
         response = jsonify()
         response.headers.add('Access-Control-Allow-Origin', 'https://chyrp-aniket.up.railway.app')
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
