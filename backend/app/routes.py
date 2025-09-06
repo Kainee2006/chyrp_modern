@@ -29,7 +29,11 @@ UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp', 'mp4', 'mov', 'avi', 'wmv', 'webm'}
 
 
-# routes.py - Add these OPTIONS handlers
+@main.route('/test-cors', methods=['GET', 'OPTIONS'])
+@cross_origin(supports_credentials=True)
+def test_cors():
+    return jsonify({"message": "CORS is working!", "origin": request.headers.get('Origin')}), 200
+
 
 @main.route('/register', methods=['OPTIONS'])
 @main.route('/login', methods=['OPTIONS'])
