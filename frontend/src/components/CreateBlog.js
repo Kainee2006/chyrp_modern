@@ -208,7 +208,7 @@ const applyImageStyle = (style) => {
       formData.append('title', title);
       formData.append('content', contentRef.current.innerHTML);
       
-      const response = await axios.post('https://chyrp_modern.railway.internal/create_blog', formData, {
+      const response = await axios.post('https://chyrpmodern-production.up.railway.app/create_blog', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
