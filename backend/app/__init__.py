@@ -23,7 +23,7 @@ def create_app(config_class=Config):
         db.create_all()
     
     # Configure CORS
-    CORS(app, origins=["http://localhost:3000"], supports_credentials=True)
+    CORS(app, origins=["http://localhost:3000","https://chyrp-aniket.up.railway.app"], supports_credentials=True)
     
     # Import and register blueprints
     from app.routes import main
