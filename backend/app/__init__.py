@@ -29,6 +29,20 @@ def create_app(config_class=Config):
          supports_credentials=True,
          methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
          allow_headers=["Content-Type", "Authorization"])
+
+    @app.after_request
+    def after_request(response):
+        # Allow credentials
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        
+        # Allow specific headers
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        
+        # Allow specific methods
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        
+        return response
+
     
     # Import and register blueprints
     from app.routes import main
@@ -36,16 +50,4 @@ def create_app(config_class=Config):
     
     return app
 
-# Add this to your __init__.py after creating the app
-@app.after_request
-def after_request(response):
-    # Allow credentials
-    response.headers.add('Access-Control-Allow-Credentials', 'true')
-    
-    # Allow specific headers
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    
-    # Allow specific methods
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-    
-    return response
+
