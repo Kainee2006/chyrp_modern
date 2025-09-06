@@ -52,7 +52,7 @@ const Register = () => {
       const body = JSON.stringify({ username, email, password });
       console.log('Sending registration request:', body);
       
-      const response = await axios.post('http://localhost:5000/register', body, config);
+      const response = await axios.post('https://chyrp-aniket.up.railway.app/register', body, config);
       console.log('Registration response:', response.data);
       
       navigate('/login');
